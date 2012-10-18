@@ -17,9 +17,9 @@ namespace Spakll.CodeMash.Data
     /// <summary>
     /// Generic group data model.
     /// </summary>
-    public class SampleDataGroup : SampleDataCommon
+    public class Track : SessionBase
     {
-        public SampleDataGroup(String uniqueId, String title, String subtitle, String imagePath, String description)
+        public Track(String uniqueId, String title, String subtitle, String imagePath, String description)
             : base(uniqueId, title, subtitle, imagePath, description)
         {
             Items.CollectionChanged += ItemsCollectionChanged;
@@ -89,14 +89,14 @@ namespace Spakll.CodeMash.Data
             }
         }
 
-        private ObservableCollection<SampleDataItem> _items = new ObservableCollection<SampleDataItem>();
-        public ObservableCollection<SampleDataItem> Items
+        private ObservableCollection<Session> _items = new ObservableCollection<Session>();
+        public ObservableCollection<Session> Items
         {
             get { return this._items; }
         }
 
-        private ObservableCollection<SampleDataItem> _topItem = new ObservableCollection<SampleDataItem>();
-        public ObservableCollection<SampleDataItem> TopItems
+        private ObservableCollection<Session> _topItem = new ObservableCollection<Session>();
+        public ObservableCollection<Session> TopItems
         {
             get { return this._topItem; }
         }
