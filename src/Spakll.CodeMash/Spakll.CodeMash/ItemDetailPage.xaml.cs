@@ -48,8 +48,8 @@ namespace Spakll.CodeMash
 
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
             var item = SessionsDataSource.GetItem((String)navigationParameter);
-            this.DefaultViewModel["Group"] = item.Group;
-            this.DefaultViewModel["Items"] = item.Group.Items;
+            this.DefaultViewModel["Technology"] = item.Technology;
+            this.DefaultViewModel["Items"] = item.Technology.Items;
             this.flipView.SelectedItem = item;
         }
 

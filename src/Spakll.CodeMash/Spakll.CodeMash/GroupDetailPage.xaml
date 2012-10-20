@@ -27,7 +27,7 @@
     -->
     <Grid
         Style="{StaticResource LayoutRootStyle}"
-        DataContext="{Binding Group}"
+        DataContext="{Binding Technology}"
         d:DataContext="{Binding AllGroups[0], Source={d:DesignInstance Type=data:SampleDataSource, IsDesignTimeCreatable=True}}">
 
         <Grid.RowDefinitions>
@@ -39,7 +39,7 @@
         <GridView
             x:Name="itemGridView"
             AutomationProperties.AutomationId="ItemGridView"
-            AutomationProperties.Name="Items In Group"
+            AutomationProperties.Name="Items In Technology"
             TabIndex="1"
             Grid.RowSpan="2"
             Padding="120,126,120,50"
@@ -68,7 +68,7 @@
         <ListView
             x:Name="itemListView"
             AutomationProperties.AutomationId="ItemListView"
-            AutomationProperties.Name="Items In Group"
+            AutomationProperties.Name="Items In Technology"
             TabIndex="1"
             Grid.Row="1"
             Visibility="Collapsed"

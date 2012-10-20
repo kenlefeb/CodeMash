@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Group Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234229
+// The Technology Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234229
 
 namespace Spakll.CodeMash
 {
@@ -41,8 +41,8 @@ namespace Spakll.CodeMash
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var group = SessionsDataSource.GetGroup((String)navigationParameter);
-            this.DefaultViewModel["Group"] = group;
+            var group= SessionsDataSource.GetGroup((String)navigationParameter);
+            this.DefaultViewModel["Technology"] = group;
             this.DefaultViewModel["Items"] = group.Items;
         }
 

@@ -19,19 +19,29 @@ namespace Spakll.CodeMash.Common
     /// to contain arbitrary data-bound content:
     /// <code>
     /// <RichTextColumns>
-    ///     <RichTextColumns.ColumnTemplate>
-    ///         <DataTemplate>
-    ///             <RichTextBlockOverflow Width="400" Margin="50,0,0,0"/>
-    ///         </DataTemplate>
-    ///     </RichTextColumns.ColumnTemplate>
-    ///     
-    ///     <RichTextBlock Width="400">
-    ///         <Paragraph>
-    ///             <Run Text="{Binding Content}"/>
-    ///         </Paragraph>
-    ///     </RichTextBlock>
+    /// <RichTextColumns.ColumnTemplate>
+    /// <DataTemplate>
+    /// <RichTextBlockOverflow Width="400"Margin="50,0,0,0"/>
+    /// </DataTemplate>
+
+    /// </RichTextColumns.ColumnTemplate>
     /// </RichTextColumns>
     /// </code>
+    /// </example>
+    /// </RichTextColumns.ColumnTemplate>
+
+    /// <RichTextBlock Width="400">
+    /// <Paragraph>
+    /// <Run Text="{Binding Content}"/>
+    /// </Paragraph>
+
+    /// </RichTextBlock>
+    /// </RichTextBlock>
+
+    /// </RichTextColumns>
+
+    /// </code>
+
     /// </example>
     /// <remarks>Typically used in a horizontally scrolling region where an unbounded amount of
     /// space allows for all needed columns to be created.  When used in a vertically scrolling

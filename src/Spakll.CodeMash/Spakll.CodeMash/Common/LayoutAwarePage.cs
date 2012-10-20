@@ -18,20 +18,38 @@ namespace Spakll.CodeMash.Common
     /// <list type="bullet">
     /// <item>
     /// <description>Application view state to visual state mapping</description>
-    /// </item>
-    /// <item>
-    /// <description>GoBack, GoForward, and GoHome event handlers</description>
-    /// </item>
-    /// <item>
-    /// <description>Mouse and keyboard shortcuts for navigation</description>
-    /// </item>
-    /// <item>
-    /// <description>State management for navigation and process lifetime management</description>
-    /// </item>
-    /// <item>
-    /// <description>A default view model</description>
+
     /// </item>
     /// </list>
+    /// </summary>
+    /// </item>
+
+    /// <item>
+    /// <description>GoBack, GoForward, and GoHome event handlers</description>
+
+    /// </item>
+    /// </item>
+
+    /// <item>
+    /// <description>Mouse and keyboard shortcuts for navigation</description>
+
+    /// </item>
+    /// </item>
+
+    /// <item>
+    /// <description>State management for navigation and process lifetime management</description>
+
+    /// </item>
+    /// </item>
+
+    /// <item>
+    /// <description>A default view model</description>
+
+    /// </item>
+    /// </item>
+
+    /// </list>
+
     /// </summary>
     [Windows.Foundation.Metadata.WebHostHidden]
     public class LayoutAwarePage : Page
@@ -235,8 +253,7 @@ namespace Spakll.CodeMash.Common
         /// <see cref="StopLayoutUpdates"/> is strongly encouraged.  Instances of
         /// <see cref="LayoutAwarePage"/> automatically invoke these handlers in their Loaded and
         /// Unloaded events.</remarks>
-        /// <seealso cref="DetermineVisualState"/>
-        /// <seealso cref="InvalidateVisualState"/>
+        /// <seealso cref="DetermineVisualState"/>/// <seealso cref="InvalidateVisualState"/>
         public void StartLayoutUpdates(object sender, RoutedEventArgs e)
         {
             var control = sender as Control;

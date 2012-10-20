@@ -17,12 +17,24 @@ namespace Spakll.CodeMash.Data
     /// <summary>
     /// Generic group data model.
     /// </summary>
-    public class Track : SessionBase
+    public class Technology : NavigableItem
     {
-        public Track(String uniqueId, String title, String subtitle, String imagePath, String description)
+        public Technology(String uniqueId, String title, String subtitle, String imagePath, String description)
             : base(uniqueId, title, subtitle, imagePath, description)
         {
             Items.CollectionChanged += ItemsCollectionChanged;
+        }
+
+        public Technology(Newtonsoft.Json.Linq.JToken technologyToken)
+        {
+            this.Title = technologyToken.ToString();
+            this.Description = string.Format("Sessions about {0}", Title);
+            this.UniqueId = string.Format("Technology-{0}", Title);
+        }
+
+        public void AddSessions(IEnumerable<Session> sessions)
+        {
+            foreach (var session in sessions) Items.Add(session);
         }
 
         private void ItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

@@ -19,11 +19,11 @@ namespace Spakll.CodeMash.Data
     /// defines properties common to both.
     /// </summary>
     [Windows.Foundation.Metadata.WebHostHidden]
-    public abstract class SessionBase : Spakll.CodeMash.Common.BindableBase
+    public abstract class NavigableItem : Spakll.CodeMash.Common.BindableBase
     {
         private static Uri _baseUri = new Uri("ms-appx:///");
 
-        public SessionBase(String uniqueId, String title, String subtitle, String imagePath, String description)
+        public NavigableItem(String uniqueId, String title, String subtitle, String imagePath, String description)
         {
             this._uniqueId = uniqueId;
             this._title = title;
@@ -31,6 +31,8 @@ namespace Spakll.CodeMash.Data
             this._description = description;
             this._imagePath = imagePath;
         }
+
+        public NavigableItem() { }
 
         private string _uniqueId = string.Empty;
         public string UniqueId
@@ -68,7 +70,7 @@ namespace Spakll.CodeMash.Data
             {
                 if (this._image == null && this._imagePath != null)
                 {
-                    this._image = new BitmapImage(new Uri(SessionBase._baseUri, this._imagePath));
+                    this._image = new BitmapImage(new Uri(NavigableItem._baseUri, this._imagePath));
                 }
                 return this._image;
             }

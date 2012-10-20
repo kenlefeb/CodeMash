@@ -18,8 +18,27 @@ namespace Spakll.CodeMash.Data
     /// <summary>
     /// Generic item data model.
     /// </summary>
-    public class Session : BindableBase
+    public class Session : NavigableItem 
     {
+        public Session(String uniqueId, String title, String subtitle, String imagePath, String description)
+            : base(uniqueId, title, subtitle, imagePath, description) { }
+
+        public Session() { }
+        
+        public Session(Newtonsoft.Json.Linq.JToken token, Spakll.CodeMash.Data.Technology technology)
+        {
+            this.Abstract = token.Value<string>("Abstract");
+            this.Description = token.Value<string>("Description");
+            this.Difficulty = token.Value<string>("Difficulty");
+            this.EventType = token.Value<string>("EventType");
+            this.SessionLookupId = token.Value<string>("SessionLookupId");
+            this.SpeakerName = token.Value<string>("SpeakerName");
+            this.SpeakerURI = token.Value<string>("SpeakerURI");
+            this.Start = token.Value<DateTime?>("Start");
+            this.Technology = technology;
+            this.Title = token.Value<string>("Title");
+            this.UniqueId = this.URI = token.Value<string>("URI");
+        }
         /*
          * 
 	        {
@@ -36,12 +55,6 @@ namespace Spakll.CodeMash.Data
 	        }
          * 
          */
-        private string title;
-        public string Title
-        {
-            get { return title; }
-            set { SetProperty(ref title, value); }
-        }
 
         private string _abstract;
         public string Abstract
@@ -50,8 +63,8 @@ namespace Spakll.CodeMash.Data
             set { SetProperty(ref _abstract, value); }
         }
 
-        private DateTime start;
-        public DateTime Start
+        private DateTime? start;
+        public DateTime? Start
         {
             get { return start; }
             set { SetProperty(ref start, value); }
@@ -71,8 +84,8 @@ namespace Spakll.CodeMash.Data
             set { SetProperty(ref speakerName, value); }
         }
 
-        private string technology;
-        public string Technology
+        private Technology technology;
+        public Technology Technology
         {
             get { return technology; }
             set { SetProperty(ref technology, value); }
@@ -100,6 +113,7 @@ namespace Spakll.CodeMash.Data
         }
 
         private string speakerURI;
+                                  
         public string SpeakerURI
         {
             get { return speakerURI; }
