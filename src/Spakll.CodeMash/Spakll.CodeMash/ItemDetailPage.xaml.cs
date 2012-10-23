@@ -47,9 +47,9 @@ namespace Spakll.CodeMash
             }
 
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var item = SessionsDataSource.GetItem((String)navigationParameter);
+            var item = CodeMashData.Instance.GetSession((String)navigationParameter);
             this.DefaultViewModel["Technology"] = item.Technology;
-            this.DefaultViewModel["Items"] = item.Technology.Items;
+            this.DefaultViewModel["Items"] = item.Technology.Sessions;
             this.flipView.SelectedItem = item;
         }
 

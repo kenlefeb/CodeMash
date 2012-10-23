@@ -26,48 +26,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Spakll.CodeMash.Data
 {
-
-    /// <summary>
-    /// Creates a collection of groups and items with hard-coded content.
-    ///
-    /// SampleDataSource initializes with placeholder data rather than live production
-    /// data so that sample data is provided at both design-time and run-time.
-    /// </summary>
-    public sealed class SessionsDataSource
+    public sealed class CodeMashData
     {
-        private static SessionsDataSource _sampleDataSource = new SessionsDataSource();
-
-        private ObservableCollection<Technology> _allGroups = new ObservableCollection<Technology>();
-        public ObservableCollection<Technology> AllGroups
+        CodeMashData()
         {
-            get { return this._allGroups; }
+            this.AllTechnologies = new ObservableCollection<Technology>();
+            ServiceUri = new Uri("http://rest.codemash.org/api/sessions.json");
+            Load(ServiceUri);
         }
 
-        public static IEnumerable<Technology> GetGroups(string uniqueId)
+        public static CodeMashData Instance
         {
-            if (!uniqueId.Equals("AllGroups")) throw new ArgumentException("Only 'AllGroups' is supported as a collection of groups");
-            
-            return _sampleDataSource.AllGroups;
+            get
+            {
+                return Nested.instance;
+            }
         }
 
-        public static Technology GetGroup(string uniqueId)
+        class Nested
         {
-            // Simple linear search is acceptable for small data sets
-            var matches = _sampleDataSource.AllGroups.Where((group) => group.UniqueId.Equals(uniqueId));
+            // Explicit static constructor to tell C# compiler
+            // not to mark type as beforefieldinit
+            static Nested()
+            {
+            }
+
+            internal static readonly CodeMashData instance = new CodeMashData();
+        }
+
+        public ObservableCollection<Technology> AllTechnologies { get; private set; }
+
+        public IEnumerable<Technology> GetTechnologies()
+        {
+            return this.AllTechnologies;
+        }
+
+        public Technology GetTechnology(string uniqueId)
+        {
+            var matches = this.AllTechnologies.Where(t => t.UniqueId.Equals(uniqueId));
             if (matches.Count() == 1) return matches.First();
             return null;
         }
 
-        public static Session GetItem(string uniqueId)
+        public Session GetSession(string uniqueId)
         {
-            // Simple linear search is acceptable for small data sets
-            var matches = _sampleDataSource.AllGroups.SelectMany(group=> group.Items).Where((item) => item.UniqueId.Equals(uniqueId));
+            var matches = this.AllTechnologies.SelectMany(t => t.Sessions).Where(s => s.UniqueId.Equals(uniqueId));
             if (matches.Count() == 1) return matches.First();
             return null;
         }
 
-        private async void Load(Uri source)
-        {   
+        public DateTime? Loaded { get; private set; }
+
+        public async void Load(Uri source)
+        {
+            this.Loaded = null;
+
             var request = HttpWebRequest.CreateHttp(source);
             var response = await request.GetResponseAsync() as HttpWebResponse;
             var content = response.GetResponseStream();
@@ -80,22 +93,19 @@ namespace Spakll.CodeMash.Data
 
             var technologyTokens = sessions.Select(s => s["Technology"]).Distinct();
 
-            var technologies = new List<Technology>();
-
             foreach (var technologyToken in technologyTokens)
             {
                 var trackSessions = sessions.Where(s => s.Value<string>("Technology") == technologyToken.ToString());
                 var technology = new Technology(technologyToken);
                 technology.AddSessions(trackSessions.Select<JToken, Session>(s => new Session(s, technology)));
-                technologies.Add(technology);
-            } 
+                AllTechnologies.Add(technology);
+            }
 
-            Contract.Assert(technologies.Count > 0);
+            Contract.Assert(AllTechnologies.Count > 0);
+
+            this.Loaded = DateTime.Now;
         }
 
-        public SessionsDataSource()
-        {
-            Load(new Uri("http://rest.codemash.org/api/sessions.json"));
-        }
+        public Uri ServiceUri { get; set; }
     }
 }

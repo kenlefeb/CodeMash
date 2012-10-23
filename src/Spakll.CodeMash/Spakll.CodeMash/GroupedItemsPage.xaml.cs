@@ -1,7 +1,7 @@
 ﻿using Spakll.CodeMash.Data;
-
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using Windows.Foundation;
@@ -40,8 +40,8 @@ namespace Spakll.CodeMash
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var sampleDataGroups = SessionsDataSource.GetGroups((String)navigationParameter);
-            this.DefaultViewModel["Groups"] = sampleDataGroups;
+            var allTechnologies = CodeMashData.Instance.GetTechnologies();
+            this.DefaultViewModel["Technologies"] = allTechnologies;
         }
 
         /// <summary>

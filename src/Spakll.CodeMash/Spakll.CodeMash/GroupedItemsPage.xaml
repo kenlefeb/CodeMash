@@ -19,10 +19,10 @@
         -->
         <CollectionViewSource
             x:Name="groupedItemsViewSource"
-            Source="{Binding Groups}"
+            Source="{Binding Technologies}"
             IsSourceGrouped="true"
-            ItemsPath="TopItems"
-            d:Source="{Binding AllGroups, Source={d:DesignInstance Type=data:SampleDataSource, IsDesignTimeCreatable=True}}"/>
+            ItemsPath="TopSessions"
+            d:Source="{Binding AllTechnologies, Source={d:DesignInstance Type=data:SessionsDataSource, IsDesignTimeCreatable=True}}"/>
     </Page.Resources>
 
     <!--

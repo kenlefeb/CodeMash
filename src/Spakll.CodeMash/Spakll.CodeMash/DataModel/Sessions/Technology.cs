@@ -22,7 +22,7 @@ namespace Spakll.CodeMash.Data
         public Technology(String uniqueId, String title, String subtitle, String imagePath, String description)
             : base(uniqueId, title, subtitle, imagePath, description)
         {
-            Items.CollectionChanged += ItemsCollectionChanged;
+            Sessions.CollectionChanged += ItemsCollectionChanged;
         }
 
         public Technology(Newtonsoft.Json.Linq.JToken technologyToken)
@@ -34,7 +34,7 @@ namespace Spakll.CodeMash.Data
 
         public void AddSessions(IEnumerable<Session> sessions)
         {
-            foreach (var session in sessions) Items.Add(session);
+            foreach (var session in sessions) Sessions.Add(session);
         }
 
         private void ItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -52,65 +52,65 @@ namespace Spakll.CodeMash.Data
                 case NotifyCollectionChangedAction.Add:
                     if (e.NewStartingIndex < 12)
                     {
-                        TopItems.Insert(e.NewStartingIndex, Items[e.NewStartingIndex]);
-                        if (TopItems.Count > 12)
+                        TopSessions.Insert(e.NewStartingIndex, Sessions[e.NewStartingIndex]);
+                        if (TopSessions.Count > 12)
                         {
-                            TopItems.RemoveAt(12);
+                            TopSessions.RemoveAt(12);
                         }
                     }
                     break;
                 case NotifyCollectionChangedAction.Move:
                     if (e.OldStartingIndex < 12 && e.NewStartingIndex < 12)
                     {
-                        TopItems.Move(e.OldStartingIndex, e.NewStartingIndex);
+                        TopSessions.Move(e.OldStartingIndex, e.NewStartingIndex);
                     }
                     else if (e.OldStartingIndex < 12)
                     {
-                        TopItems.RemoveAt(e.OldStartingIndex);
-                        TopItems.Add(Items[11]);
+                        TopSessions.RemoveAt(e.OldStartingIndex);
+                        TopSessions.Add(Sessions[11]);
                     }
                     else if (e.NewStartingIndex < 12)
                     {
-                        TopItems.Insert(e.NewStartingIndex, Items[e.NewStartingIndex]);
-                        TopItems.RemoveAt(12);
+                        TopSessions.Insert(e.NewStartingIndex, Sessions[e.NewStartingIndex]);
+                        TopSessions.RemoveAt(12);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     if (e.OldStartingIndex < 12)
                     {
-                        TopItems.RemoveAt(e.OldStartingIndex);
-                        if (Items.Count >= 12)
+                        TopSessions.RemoveAt(e.OldStartingIndex);
+                        if (Sessions.Count >= 12)
                         {
-                            TopItems.Add(Items[11]);
+                            TopSessions.Add(Sessions[11]);
                         }
                     }
                     break;
                 case NotifyCollectionChangedAction.Replace:
                     if (e.OldStartingIndex < 12)
                     {
-                        TopItems[e.OldStartingIndex] = Items[e.OldStartingIndex];
+                        TopSessions[e.OldStartingIndex] = Sessions[e.OldStartingIndex];
                     }
                     break;
                 case NotifyCollectionChangedAction.Reset:
-                    TopItems.Clear();
-                    while (TopItems.Count < Items.Count && TopItems.Count < 12)
+                    TopSessions.Clear();
+                    while (TopSessions.Count < Sessions.Count && TopSessions.Count < 12)
                     {
-                        TopItems.Add(Items[TopItems.Count]);
+                        TopSessions.Add(Sessions[TopSessions.Count]);
                     }
                     break;
             }
         }
 
-        private ObservableCollection<Session> _items = new ObservableCollection<Session>();
-        public ObservableCollection<Session> Items
+        private ObservableCollection<Session> _sessions = new ObservableCollection<Session>();
+        public ObservableCollection<Session> Sessions
         {
-            get { return this._items; }
+            get { return this._sessions; }
         }
 
-        private ObservableCollection<Session> _topItem = new ObservableCollection<Session>();
-        public ObservableCollection<Session> TopItems
+        private ObservableCollection<Session> _topSessions = new ObservableCollection<Session>();
+        public ObservableCollection<Session> TopSessions
         {
-            get { return this._topItem; }
+            get { return this._topSessions; }
         }
     }
 }
