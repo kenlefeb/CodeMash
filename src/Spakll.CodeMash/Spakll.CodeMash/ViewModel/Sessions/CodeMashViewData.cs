@@ -30,7 +30,10 @@ namespace Spakll.CodeMash.ViewModel.Sessions
 {
     public sealed class CodeMashViewData
     {
-        CodeMashViewData() { }
+        CodeMashViewData()
+        {
+            GetGroups();
+        }
 
         public static CodeMashViewData Instance
         {
@@ -51,23 +54,25 @@ namespace Spakll.CodeMash.ViewModel.Sessions
             internal static readonly CodeMashViewData instance = new CodeMashViewData();
         }
 
+        public ObservableCollection<GroupView> AllGroups { get; private set; }
+
         public ObservableCollection<TechnologyView> AllTechnologies { get; private set; }
 
         public IEnumerable<GroupView> GetGroups()
         {
             var technologies = GetTechnologies().OrderBy(t => t.GroupName);
-            var list = new List<GroupView>();
+            AllGroups = new ObservableCollection<GroupView>();
             foreach (var technology in technologies)
             {
-                var group = list.FirstOrDefault(g => g.Title == technology.GroupName);
+                var group = AllGroups.FirstOrDefault(g => g.Title == technology.GroupName);
                 if (group == null)
                 {
                     group = new GroupView { Title = technology.GroupName };
-                    list.Add(group);
+                    AllGroups.Add(group);
                 }
                 group.Technologies.Add(technology);
             }
-            return list;
+            return AllGroups;
         }
 
         public IEnumerable<TechnologyView> GetTechnologies()

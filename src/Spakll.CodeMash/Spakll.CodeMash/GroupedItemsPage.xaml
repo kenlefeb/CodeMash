@@ -19,10 +19,11 @@
         -->
         <CollectionViewSource
             x:Name="groupedItemsViewSource"
-            Source="{Binding Technologies}"
+            Source="{Binding Groups}"             
             IsSourceGrouped="true"
-            ItemsPath="TopSessions"
-            d:Source="{Binding AllTechnologies, Source={d:DesignInstance Type=data:CodeMashViewData, IsDesignTimeCreatable=False}}"/>
+            ItemsPath="Technologies"
+            >
+        </CollectionViewSource>
     </Page.Resources>
 
     <!--
@@ -65,7 +66,7 @@
                                     Click="Header_Click"
                                     Style="{StaticResource TextPrimaryButtonStyle}" >
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding GroupName}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
+                                        <TextBlock Text="{Binding Title}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
                                         <TextBlock Text="{StaticResource ChevronGlyph}" FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" Style="{StaticResource GroupHeaderTextStyle}"/>
                                     </StackPanel>
                                 </Button>

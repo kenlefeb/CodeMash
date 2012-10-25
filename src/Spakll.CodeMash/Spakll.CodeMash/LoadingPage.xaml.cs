@@ -48,7 +48,7 @@ namespace Spakll.CodeMash
                 await Task.Delay(TimeSpan.FromSeconds(1));
             }
 
-            this.Frame.Navigate(typeof(GroupedItemsPage), "AllTechnologies");
+            this.Frame.Navigate(typeof(GroupedItemsPage), "AllGroups");
 
         }
     }

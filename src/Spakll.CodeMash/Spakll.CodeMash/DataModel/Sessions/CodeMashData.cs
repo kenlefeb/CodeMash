@@ -81,6 +81,8 @@ namespace Spakll.CodeMash.Data
         {
             this.Loaded = null;
 
+            AllTechnologies.Clear();
+
             var request = HttpWebRequest.CreateHttp(source);
             var response = await request.GetResponseAsync() as HttpWebResponse;
             var content = response.GetResponseStream();
