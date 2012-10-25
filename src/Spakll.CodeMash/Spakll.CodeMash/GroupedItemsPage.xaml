@@ -5,7 +5,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Spakll.CodeMash"
-    xmlns:data="using:Spakll.CodeMash.Data"
+    xmlns:data="using:Spakll.CodeMash.ViewModel.Sessions"
     xmlns:common="using:Spakll.CodeMash.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -22,7 +22,7 @@
             Source="{Binding Technologies}"
             IsSourceGrouped="true"
             ItemsPath="TopSessions"
-            d:Source="{Binding AllTechnologies, Source={d:DesignInstance Type=data:SessionsDataSource, IsDesignTimeCreatable=True}}"/>
+            d:Source="{Binding AllTechnologies, Source={d:DesignInstance Type=data:CodeMashViewData, IsDesignTimeCreatable=False}}"/>
     </Page.Resources>
 
     <!--
@@ -65,7 +65,7 @@
                                     Click="Header_Click"
                                     Style="{StaticResource TextPrimaryButtonStyle}" >
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Title}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
+                                        <TextBlock Text="{Binding GroupName}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
                                         <TextBlock Text="{StaticResource ChevronGlyph}" FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" Style="{StaticResource GroupHeaderTextStyle}"/>
                                     </StackPanel>
                                 </Button>

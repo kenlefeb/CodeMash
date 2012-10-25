@@ -126,6 +126,9 @@
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="ViewModel\Sessions\CodeMashViewData.cs" />
+    <Compile Include="ViewModel\Sessions\GroupView.cs" />
+    <Compile Include="ViewModel\Sessions\TechnologyView.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
