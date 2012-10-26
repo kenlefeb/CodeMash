@@ -16,6 +16,7 @@ using System.Diagnostics.Contracts;
 using Newtonsoft.Json;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
 
 // The data model defined by this file serves as a representative example of a strongly-typed
 // model that supports notification when members are added, removed, or modified.  The property
@@ -28,7 +29,7 @@ namespace Spakll.CodeMash.Data
 {
     public sealed class CodeMashData
     {
-        CodeMashData()
+        public CodeMashData()
         {
             this.AllTechnologies = new ObservableCollection<Technology>();
             ServiceUri = new Uri("http://rest.codemash.org/api/sessions.json");
@@ -77,14 +78,15 @@ namespace Spakll.CodeMash.Data
 
         public DateTime? Loaded { get; private set; }
 
-        public async void Load(Uri source)
+        public void Load(Uri source)
         {
             this.Loaded = null;
 
             AllTechnologies.Clear();
 
             var request = HttpWebRequest.CreateHttp(source);
-            var response = await request.GetResponseAsync() as HttpWebResponse;
+            var task = Task.Run<WebResponse>(() => request.GetResponseAsync());
+            var response = task.Result as HttpWebResponse;
             var content = response.GetResponseStream();
 
             Contract.Assert(response.StatusCode == HttpStatusCode.OK);
