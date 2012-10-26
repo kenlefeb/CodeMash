@@ -13,6 +13,7 @@ namespace Spakll.CodeMash.ViewModel.Sessions
         public TechnologyView(Technology technology)
             : base(technology.UniqueId, technology.Title, technology.Subtitle, "", technology.Description)
         {
+            AddSessions(technology.Sessions);
         }
 
         public string GroupName
@@ -54,7 +55,7 @@ namespace Spakll.CodeMash.ViewModel.Sessions
                     case 'z':
                         return "V-Z";
                     default:
-                        return "Other";
+                        return "0-9...";
                 }
             }
         }

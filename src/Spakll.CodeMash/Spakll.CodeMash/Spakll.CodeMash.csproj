@@ -103,11 +103,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SessionsPage.xaml.cs">
+      <DependentUpon>SessionsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataModel\Sessions\NavigableItem.cs" />
     <Compile Include="DataModel\Sessions\Technology.cs" />
     <Compile Include="DataModel\Sessions\Session.cs" />
-    <Compile Include="GroupedItemsPage.xaml.cs">
-      <DependentUpon>GroupedItemsPage.xaml</DependentUpon>
+    <Compile Include="TechnologiesPage.xaml.cs">
+      <DependentUpon>TechnologiesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="GroupDetailPage.xaml.cs">
       <DependentUpon>GroupDetailPage.xaml</DependentUpon>
@@ -124,7 +127,9 @@
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="ViewModel\Sessions\CodeMashViewData.cs" />
-    <Compile Include="ViewModel\Sessions\GroupView.cs" />
+    <Compile Include="ViewModel\Sessions\SessionsView.cs" />
+    <Compile Include="ViewModel\Sessions\SessionView.cs" />
+    <Compile Include="ViewModel\Sessions\TechnologiesView.cs" />
     <Compile Include="ViewModel\Sessions\TechnologyView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -153,7 +158,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GroupedItemsPage.xaml">
+    <Page Include="SessionsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TechnologiesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

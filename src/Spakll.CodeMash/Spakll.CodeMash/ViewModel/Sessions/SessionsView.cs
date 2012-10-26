@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Spakll.CodeMash.ViewModel.Sessions
 {
-    public class GroupView : NavigableItem
+    public class SessionsView : NavigableItem
     {
-        public GroupView()
+        public SessionsView()
         {
-            Technologies = new List<TechnologyView>();
+            Sessions = new List<SessionView>();
         }
 
-        public IList<TechnologyView> Technologies { get; private set; }
+        public IList<SessionView> Sessions { get; private set; }
     }
 }

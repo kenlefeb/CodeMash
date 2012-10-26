@@ -22,9 +22,9 @@ namespace Spakll.CodeMash
     /// <summary>
     /// A page that displays a grouped collection of items.
     /// </summary>
-    public sealed partial class GroupedItemsPage : Spakll.CodeMash.Common.LayoutAwarePage
+    public sealed partial class TechnologiesPage : Spakll.CodeMash.Common.LayoutAwarePage
     {
-        public GroupedItemsPage()
+        public TechnologiesPage()
         {
             this.InitializeComponent();
         }
@@ -41,7 +41,7 @@ namespace Spakll.CodeMash
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            this.DefaultViewModel["Groups"] = CodeMashViewData.Instance.GetGroups();
+            this.DefaultViewModel["Groups"] = CodeMashViewData.Instance.GetTechnologyGroups();
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Spakll.CodeMash
 
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
-            this.Frame.Navigate(typeof(GroupDetailPage), ((Technology)group).UniqueId);
+            this.Frame.Navigate(typeof(SessionsPage), (Technology)group);
         }
 
         /// <summary>
@@ -69,8 +69,8 @@ namespace Spakll.CodeMash
         {
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
-            var itemId = ((Session)e.ClickedItem).UniqueId;
-            this.Frame.Navigate(typeof(ItemDetailPage), itemId);
+            var technology = e.ClickedItem as Technology;
+            this.Frame.Navigate(typeof(SessionsPage), technology);
         }
     }
 }

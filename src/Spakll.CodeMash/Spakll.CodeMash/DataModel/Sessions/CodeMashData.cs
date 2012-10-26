@@ -29,7 +29,7 @@ namespace Spakll.CodeMash.Data
 {
     public sealed class CodeMashData
     {
-        public CodeMashData()
+        CodeMashData()
         {
             this.AllTechnologies = new ObservableCollection<Technology>();
             ServiceUri = new Uri("http://rest.codemash.org/api/sessions.json");

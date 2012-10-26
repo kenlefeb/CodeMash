@@ -32,7 +32,7 @@ namespace Spakll.CodeMash.ViewModel.Sessions
     {
         CodeMashViewData()
         {
-            GetGroups();
+            GetTechnologyGroups();
         }
 
         public static CodeMashViewData Instance
@@ -54,25 +54,24 @@ namespace Spakll.CodeMash.ViewModel.Sessions
             internal static readonly CodeMashViewData instance = new CodeMashViewData();
         }
 
-        public ObservableCollection<GroupView> AllGroups { get; private set; }
-
+        public ObservableCollection<TechnologiesView> AllTechnologyGroups { get; private set; }
         public ObservableCollection<TechnologyView> AllTechnologies { get; private set; }
 
-        public IEnumerable<GroupView> GetGroups()
+        public IEnumerable<TechnologiesView> GetTechnologyGroups()
         {
             var technologies = GetTechnologies().OrderBy(t => t.GroupName);
-            AllGroups = new ObservableCollection<GroupView>();
+            AllTechnologyGroups = new ObservableCollection<TechnologiesView>();
             foreach (var technology in technologies)
             {
-                var group = AllGroups.FirstOrDefault(g => g.Title == technology.GroupName);
+                var group = AllTechnologyGroups.FirstOrDefault(g => g.Title == technology.GroupName);
                 if (group == null)
                 {
-                    group = new GroupView { Title = technology.GroupName };
-                    AllGroups.Add(group);
+                    group = new TechnologiesView { Title = technology.GroupName };
+                    AllTechnologyGroups.Add(group);
                 }
                 group.Technologies.Add(technology);
             }
-            return AllGroups;
+            return AllTechnologyGroups;
         }
 
         public IEnumerable<TechnologyView> GetTechnologies()
@@ -85,6 +84,28 @@ namespace Spakll.CodeMash.ViewModel.Sessions
             return new TechnologyView(CodeMashData.Instance.GetTechnology(uniqueId));
         }
 
+        public IEnumerable<SessionsView> GetSessionGroups(Technology technology)
+        {
+            var sessions = GetSessions(technology).OrderBy(s => s.GroupName);
+            var groups = new ObservableCollection<SessionsView>();
+
+            foreach (var session in sessions)
+            {
+                var group = groups.FirstOrDefault(g => g.Title == session.GroupName);
+                if (group == null)
+                {
+                    group = new SessionsView { Title = session.GroupName };
+                    groups.Add(group);
+                }
+                group.Sessions.Add(session);
+            }
+            return groups;
+        }
+
+        public IEnumerable<SessionView> GetSessions(Technology technology)
+        {
+            return technology.Sessions.Select<Session, SessionView>(s => new SessionView(s));
+        }
         public Session GetSession(string uniqueId)
         {
             return CodeMashData.Instance.GetSession(uniqueId);
@@ -105,5 +126,6 @@ namespace Spakll.CodeMash.ViewModel.Sessions
             get { return CodeMashData.Instance.ServiceUri; }
             set { CodeMashData.Instance.ServiceUri = value; }
         }
+
     }
 }
