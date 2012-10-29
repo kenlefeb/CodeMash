@@ -22,9 +22,9 @@ namespace Spakll.CodeMash
     /// A page that displays details for a single item within a group while allowing gestures to
     /// flip through other items belonging to the same group.
     /// </summary>
-    public sealed partial class ItemDetailPage : Spakll.CodeMash.Common.LayoutAwarePage
+    public sealed partial class SessionDetailPage : Spakll.CodeMash.Common.LayoutAwarePage
     {
-        public ItemDetailPage()
+        public SessionDetailPage()
         {
             this.InitializeComponent();
         }
@@ -49,7 +49,7 @@ namespace Spakll.CodeMash
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
             var item = CodeMashData.Instance.GetSession((String)navigationParameter);
             this.DefaultViewModel["Technology"] = item.Technology;
-            this.DefaultViewModel["Items"] = item.Technology.Sessions;
+            this.DefaultViewModel["Sessions"] = item.Technology.Sessions;
             this.flipView.SelectedItem = item;
         }
 

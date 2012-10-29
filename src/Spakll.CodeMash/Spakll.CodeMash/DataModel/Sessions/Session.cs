@@ -28,13 +28,14 @@ namespace Spakll.CodeMash.Data
         public Session(Newtonsoft.Json.Linq.JToken token, Spakll.CodeMash.Data.Technology technology)
         {
             this.Abstract = token.Value<string>("Abstract");
-            this.Description = token.Value<string>("Description");
+            this.Description = this.Abstract;
             this.Difficulty = token.Value<string>("Difficulty");
             this.EventType = token.Value<string>("EventType");
             this.SessionLookupId = token.Value<string>("SessionLookupId");
             this.SpeakerName = token.Value<string>("SpeakerName");
             this.SpeakerURI = token.Value<string>("SpeakerURI");
             this.Start = token.Value<DateTime?>("Start");
+            this.Subtitle = this.SpeakerName;
             this.Technology = technology;
             this.Title = token.Value<string>("Title");
             this.UniqueId = this.URI = token.Value<string>("URI");
