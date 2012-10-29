@@ -1,5 +1,5 @@
 ﻿using Spakll.CodeMash.Data;
-
+using Spakll.CodeMash.ViewModel.Sessions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,7 +41,8 @@ namespace Spakll.CodeMash
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var group= CodeMashData.Instance.GetTechnology((String)navigationParameter);
+            var view = (TechnologiesView)navigationParameter;
+            var group= CodeMashData.Instance.GetTechnology(view.Technologies[0].UniqueId);
             this.DefaultViewModel["Technology"] = group;
             this.DefaultViewModel["Items"] = group.Sessions;
         }
