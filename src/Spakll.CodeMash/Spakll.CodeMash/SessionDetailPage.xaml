@@ -63,13 +63,24 @@
                         <ScrollViewer x:Name="scrollViewer" Style="{StaticResource HorizontalScrollViewerStyle}" Grid.Row="1">
 
                             <!-- Content is allowed to flow across as many columns as needed -->
-                            <common:RichTextColumns x:Name="richTextColumns" Margin="117,0,117,47">
+                            <common:RichTextColumns x:Name="richTextColumns" Margin="117,0,117,47">                                    
                                 <RichTextBlock x:Name="richTextBlock" Width="560" Style="{StaticResource ItemRichTextStyle}" IsTextSelectionEnabled="False">
                                     <Paragraph>
                                         <Run FontSize="26.667" FontWeight="Light" Text="{Binding Title}"/>
                                         <LineBreak/>
-                                        <LineBreak/>
                                         <Run FontWeight="Normal" Text="{Binding Subtitle}"/>
+                                        <LineBreak/>
+                                    </Paragraph>
+                                    <Paragraph>
+                                        <Run FontWeight="Normal" Text="Difficulty: "/>
+                                        <Run FontWeight="Light" Text="{Binding Difficulty}"/>                                        
+                                        <LineBreak/>
+                                        <Run FontWeight="Normal" Text="Time: "/>
+                                        <Run FontWeight="Light" Text="{Binding Start}"/>
+                                        <LineBreak/>
+                                        <Run FontWeight="Normal" Text="Type: "/>
+                                        <Run FontWeight="Light" Text="{Binding EventType}"/>
+                                        <LineBreak/>
                                     </Paragraph>
                                     <Paragraph LineStackingStrategy="MaxHeight">
                                         <InlineUIContainer>
